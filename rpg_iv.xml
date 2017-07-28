@@ -13,9 +13,6 @@
 <MODE>
 <PROPS>
     <PROPERTY NAME="lineComment" VALUE="//" />
-    <PROPERTY NAME="lineComment" VALUE="#!" />
-    <!-- <PROPERTY NAME="indentOpenBrackets" VALUE="$[" /> -->
-    <!-- <PROPERTY NAME="indentCloseBrackets" VALUE="]$" /> -->
     <PROPERTY NAME="doubleBracketIndent" VALUE="false" />
     <PROPERTY NAME="lineUpClosingBracket" VALUE="true" />
     <PROPERTY NAME="indentSize" VALUE="2" />
