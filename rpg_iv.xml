@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+ 
+<!DOCTYPE MODE SYSTEM "xmode.dtd">
+<!-- Edit mode for JEdit for the free-form RPG IV language -->
+<!-- See https://www.ibm.com/support/knowledgecenter/ssw_ibm_i_73/rzasc/sc092507.pdf -->
+<!-- See https://www.ibm.com/support/knowledgecenter/ssw_ibm_i_73/rzasd/sc092508.pdf -->
+<!-- Currently does not support control specs -->
+<!-- Recognizes keywords but is indiscriminate in highlighting about anything starting with * -->
+<!-- or anything that looks like a function. Much more could be done, feel free to fork for pull. -->
+<!-- Add to ~/.jedit/modes/catalog as follows:  -->
+<!-- <MODE NAME="rpg_iv" FILE="rpg_iv.xml" FILE_NAME_GLOB="*.{rpg,rpgle}" /> -->
+<!-- Jack J. Woehr jwoehr@softwoehr.com updated 20170727 -->
+<MODE>
+<PROPS>
+    <PROPERTY NAME="lineComment" VALUE="//" />
+    <PROPERTY NAME="lineComment" VALUE="#!" />
+    <!-- <PROPERTY NAME="indentOpenBrackets" VALUE="$[" /> -->
+    <!-- <PROPERTY NAME="indentCloseBrackets" VALUE="]$" /> -->
+    <PROPERTY NAME="doubleBracketIndent" VALUE="false" />
+    <PROPERTY NAME="lineUpClosingBracket" VALUE="true" />
+    <PROPERTY NAME="indentSize" VALUE="2" />
+    <PROPERTY NAME="tabSize" VALUE="4" />
+    <PROPERTY NAME="noTabs" VALUE="true" />
+</PROPS>
+<RULES IGNORE_CASE="TRUE" HIGHLIGHT_DIGITS="TRUE"
+DIGIT_RE="(0[lL]?|[1-9]\d{0,9}(\d{0,9}[lL])?|0[xX]\p{XDigit}{1,8}(\p{XDigit}{0,8}[lL])?|0[0-7]{1,11}([0-7]{0,11}[lL])?|([0-9]+\.[0-9]*|\.[0-9]+)([eE][+-]?[0-9]+)?[fFdD]?|[0-9]+([eE][+-]?[0-9]+[fFdD]?|([eE][+-]?[0-9]+)?[fFdD]))">
+
+	<EOL_SPAN TYPE="COMMENT1">//</EOL_SPAN>
+	
+	<SPAN TYPE="LITERAL1" NO_LINE_BREAK="TRUE">
+     	<BEGIN>'</BEGIN>
+        <END>'</END>
+        </SPAN>
+     <SEQ_REGEXP TYPE="LITERAL2" HASH_CHARS="/" AT_WORD_START="TRUE">/\S*</SEQ_REGEXP>
+     <SEQ_REGEXP TYPE="LITERAL2" HASH_CHARS="**" AT_WORD_START="TRUE">\*\*\w*</SEQ_REGEXP>   
+     <SEQ_REGEXP TYPE="LITERAL4" HASH_CHARS="*in" AT_WORD_START="TRUE">\*in\w\w</SEQ_REGEXP>   
+     <SEQ_REGEXP TYPE="LITERAL3" HASH_CHARS="*" AT_WORD_START="TRUE">\*\w*</SEQ_REGEXP> 
+     
+     <SEQ_REGEXP TYPE="KEYWORD3" HASH_CHARS="DATE" AT_WORD_START="TRUE">DATE\{.*\(.*\).*\}</SEQ_REGEXP>
+     <SEQ_REGEXP TYPE="KEYWORD3" HASH_CHARS="OBJECT" AT_WORD_START="TRUE">OBJECT\{.*\}</SEQ_REGEXP>
+     <SEQ_REGEXP TYPE="KEYWORD3" HASH_CHARS="PAGE-" AT_WORD_START="TRUE">PAGE\d*\-PAGE\d*</SEQ_REGEXP> 
+     <SEQ_REGEXP TYPE="KEYWORD3" HASH_CHARS="POINTER" AT_WORD_START="TRUE">POINTER\{.*\}</SEQ_REGEXP>
+     <SEQ_REGEXP TYPE="KEYWORD3" HASH_CHARS="TIME" AT_WORD_START="TRUE">TIME\{.*\}</SEQ_REGEXP>
+     <SEQ_REGEXP TYPE="KEYWORD3" HASH_CHARS="TIMESTAMP" AT_WORD_START="TRUE">TIMESTAMP\{.*\}</SEQ_REGEXP>
+        
+    <SEQ_REGEXP HASH_CHAR="%" AT_WORD_START="TRUE"
+ 		TYPE="FUNCTION">\%[A-Z][a-z]</SEQ_REGEXP>
+    
+	<MARK_PREVIOUS TYPE="FUNCTION" MATCH_TYPE="OPERATOR">(</MARK_PREVIOUS>
+	<SEQ TYPE="OPERATOR">(</SEQ>
+	<SEQ TYPE="OPERATOR">)</SEQ>
+	<SEQ TYPE="OPERATOR">=</SEQ>
+	<SEQ TYPE="OPERATOR">;</SEQ>
+	
+    <KEYWORDS>
+    <KEYWORD1>CTL-OPT</KEYWORD1>
+    <KEYWORD1>{DCL-PARM}</KEYWORD1>
+    <KEYWORD1>{DCL-SUBF}</KEYWORD1>
+    <KEYWORD1>DCL-C</KEYWORD1>
+    <KEYWORD1>DCL-F</KEYWORD1>
+    <KEYWORD1>DCL-S</KEYWORD1>
+    <KEYWORD1>DCL-DS</KEYWORD1>
+    <KEYWORD1>END-DS</KEYWORD1>
+    <KEYWORD1>DCL-PI</KEYWORD1>
+    <KEYWORD1>END-PI</KEYWORD1>
+    <KEYWORD1>DCL-PR</KEYWORD1>
+    <KEYWORD1>END-PR</KEYWORD1>
+    <KEYWORD2>dow</KEYWORD2>
+    <KEYWORD2>enddo</KEYWORD2>
+    <KEYWORD2>endsl</KEYWORD2>
+    <KEYWORD2>exfmt</KEYWORD2>    
+    <KEYWORD2>select</KEYWORD2>
+    <KEYWORD2>when</KEYWORD2>
+    <KEYWORD2>other</KEYWORD2>
+    <KEYWORD2>return</KEYWORD2>
+    <KEYWORD3>workstn</KEYWORD3>
+    <KEYWORD3>ind</KEYWORD3>
+    <KEYWORD3>udate</KEYWORD3>
+    <KEYWORD3>umonth</KEYWORD3>
+    <KEYWORD3>uyear</KEYWORD3>
+    <KEYWORD3>XML_ATTR_UCS2_REF</KEYWORD3>
+    <KEYWORD3>XML_ATTR_NAME</KEYWORD3>
+    <KEYWORD3>XML_ATTR_PREDEF_REF</KEYWORD3>
+    <KEYWORD3>XML_ATTR_CHARS</KEYWORD3>
+    <KEYWORD3>XML_CHARS</KEYWORD3>
+    <KEYWORD3>XML_COMMENT</KEYWORD3>
+    <KEYWORD3>XML_UCS2_REF</KEYWORD3>
+    <KEYWORD3>XML_PREDEF_REF</KEYWORD3>
+    <KEYWORD3>XML_DOCTYPE_DECL</KEYWORD3>
+    <KEYWORD3>XML_ENCODING_DECL</KEYWORD3>
+    <KEYWORD3>XML_END_CDATA</KEYWORD3>
+    <KEYWORD3>XML_END_DOCUMENT</KEYWORD3>
+    <KEYWORD3>XML_END_ELEMENT</KEYWORD3>
+    <KEYWORD3>XML_END_PREFIX_MAPPING</KEYWORD3>
+    <KEYWORD3>XML_EXCEPTION</KEYWORD3>
+    <KEYWORD3>XML_PI_TARGET</KEYWORD3>
+    <KEYWORD3>XML_PI_DATA</KEYWORD3>
+    <KEYWORD3>XML_STANDALONE_DECL</KEYWORD3>
+    <KEYWORD3>XML_START_CDATA</KEYWORD3>
+    <KEYWORD3>XML_START_DOCUMENT</KEYWORD3>
+    <KEYWORD3>XML_START_ELEMENT</KEYWORD3>
+    <KEYWORD3>XML_START_PREFIX_MAPPING</KEYWORD3>
+    <KEYWORD3>XML_UNKNOWN_ATTR_REF</KEYWORD3>
+    <KEYWORD3>XML_UNKNOWN_REF</KEYWORD3>
+    <KEYWORD3>XML_VERSION_IN</KEYWORD3>
+    <KEYWORD4>and</KEYWORD4>
+    <KEYWORD4>not</KEYWORD4>
+    <KEYWORD4>or</KEYWORD4>
+    </KEYWORDS>
+</RULES>
+</MODE>
